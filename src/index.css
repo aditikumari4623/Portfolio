@@ -1,0 +1,291 @@
+@import "tailwindcss";
+
+/* --------------------------------
+   KEYFRAMES
+-------------------------------- */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-400px);
+    opacity: 0;
+  }
+}
+
+/* --------------------------------
+   ANIMATION CLASSES
+-------------------------------- */
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 4s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.7s ease-out forwards;
+}
+
+.animate-fade-in-delay-1 {
+  animation: fade-in 0.7s ease-out 0.2s forwards;
+}
+
+.animate-fade-in-delay-2 {
+  animation: fade-in 0.7s ease-out 0.4s forwards;
+}
+
+.animate-fade-in-delay-3 {
+  animation: fade-in 0.7s ease-out 0.6s forwards;
+}
+
+.animate-fade-in-delay-4 {
+  animation: fade-in 0.7s ease-out 0.8s forwards;
+}
+
+/* faster meteors */
+.animate-meteor {
+  animation: meteor 3.5s linear infinite;
+}
+
+/* --------------------------------
+   GLOBAL UTILITIES
+-------------------------------- */
+
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 0.75rem;
+  background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
+  border: 1px solid hsl(var(--border));
+}
+
+.text-glow {
+  text-shadow: 0 0 12px rgba(167, 139, 250, 0.6);
+}
+
+/* --------------------------------
+   NAVBAR HOVER EFFECT
+-------------------------------- */
+
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: hsl(var(--primary));
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.6);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: hsl(var(--primary));
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* --------------------------------
+   STAR & METEOR BACKGROUND
+-------------------------------- */
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.meteor {
+  position: absolute;
+  height: 2px;
+  width: 110px;
+  max-width: 45vw;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
+  box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.5);
+  will-change: transform;
+}
+
+/* --------------------------------
+   IMPORTANT FIX (GLASS LOOK LIKE TUTORIAL)
+-------------------------------- */
+
+/* card background should not be fully solid or fully transparent */
+.bg-card {
+  background-color: hsla(var(--card), 0.65) !important;
+  backdrop-filter: blur(10px);
+}
+
+.bg-secondary {
+  background-color: hsla(var(--secondary), 0.35) !important;
+  backdrop-filter: blur(8px);
+}
+
+.text-muted-foreground {
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+.border-border {
+  border-color: hsl(var(--border)) !important;
+}
+
+.border-input {
+  border-color: hsl(var(--input)) !important;
+}
+
+.bg-background {
+  background-color: hsl(var(--background)) !important;
+}
+
+.text-foreground {
+  color: hsl(var(--foreground)) !important;
+}
+
+.text-primary {
+  color: hsl(var(--primary)) !important;
+}
+
+.bg-primary {
+  background-color: hsl(var(--primary)) !important;
+}
+
+.text-primary-foreground {
+  color: hsl(var(--primary-foreground)) !important;
+}
+
+.text-secondary-foreground {
+  color: hsl(var(--secondary-foreground)) !important;
+}
+
+/* --------------------------------
+   THEME VARIABLES (FIXED)
+-------------------------------- */
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --primary: 250 47% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 46%;
+
+    --input: 214 32% 91%;
+    --border: 214 32% 91%;
+  }
+
+  .dark {
+    --background: 222 47% 4%;
+    --foreground: 213 31% 91%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 213 31% 91%;
+
+    --primary: 250 65% 65%;
+    --primary-foreground: 213 31% 91%;
+
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 213 31% 91%;
+
+    --muted: 222 47% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --input: 217 33% 20%;
+    --border: 217 33% 20%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    min-height: 100vh;
+  }
+}
+
+/* --------------------------------
+   ROOT
+-------------------------------- */
+
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
